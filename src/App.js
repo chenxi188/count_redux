@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types'
+import {increment,decrement} from './redux/actions.js'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+export default class App extends Component {
+    constructor(props) {
+    super(props)
+    this.numberRef = React.createRef()
+  }
+
+  static propTypes={
+    store:PropTypes.object.isRequired
+  }
+
+  increment=()=>{
+    const number=this.numberRef.current.value*1
+    this.props.store.dispatch(increment(number))
+  }
+
+  decrement=()=>{
+    const number=this.numberRef.current.value*1
+    this.props.store.dispatch(decrement(number))
+  }
+
+  render(){
+    const count=this.props.store.getState()
+    return (
+    <div>
+        <p>click {count} times</p>
+
+        <div>
+          <select ref={this.numberRef}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select> &nbsp;&nbsp;
+          <button onClick={this.increment}>+</button>&nbsp;&nbsp;
+          <button onClick={this.decrement}>-</button>&nbsp;&nbsp;
+          <button onClick={this.incrementIfOdd}>increment if odd</button>&nbsp;&nbsp;
+          <button onClick={this.incrementAsync}>increment async</button>
+        </div>
     </div>
   );
+  }
+  
 }
-
-export default App;
