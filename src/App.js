@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {increment,decrement} from './redux/actions.js'
 
 export default class App extends Component {
-    constructor(props) {
+  constructor(props) {
     super(props)
     this.numberRef = React.createRef()
   }
@@ -20,6 +20,21 @@ export default class App extends Component {
   decrement=()=>{
     const number=this.numberRef.current.value*1
     this.props.store.dispatch(decrement(number))
+  }
+
+  incrementIfOdd = () => {
+    const number = this.numberRef.current.value * 1
+    if (this.props.store.getState() % 2 === 1) {
+      this.props.store.dispatch(increment(number))
+    }
+
+  }
+
+  incrementAsync = () => {
+    const number = this.numberRef.current.value * 1
+    setTimeout(() => {
+      this.props.store.dispatch(increment(number))
+    }, 1000)
   }
 
   render(){
