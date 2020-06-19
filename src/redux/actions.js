@@ -1,5 +1,5 @@
+import {INCREMENT,DECREMENT} from './action-types.js'
 
 
-
-export const increment=number=>({type:'increment',data:number})
-export const decrement=number=>({type:'decrement',data:number})
+export const increment=number=>({type:INCREMENT,data:number})
+export const decrement=number=>({type:DECREMENT,data:number})
