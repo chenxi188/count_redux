@@ -6,7 +6,7 @@ export const decrement=number=>({type:DECREMENT,data:number})
 
 export const incrementAsync=number=>{
 	return dispatch=>{
-		setTimeOut(()=>{
+		setTimeout(()=>{
 			dispatch(increment(number))
 		},1000)
 	}
