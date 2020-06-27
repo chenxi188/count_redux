@@ -6,7 +6,6 @@ import {increment,decrement,incrementAsync} from '../redux/actions.js'
 
 // const mapStateToProps=(state)=>({count:state})
 // const mapDispatchToProps={increment,decrement}
-
 // export default connect(mapStateToProps,mapDispatchToProps)(Counter)
 
 export default connect(
